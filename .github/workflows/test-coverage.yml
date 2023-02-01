@@ -7,14 +7,14 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v3
             - name: Install packages
-              run: yarn install --frozen-lockfile
+              run: yarn install --network-timeout 600000
             - name: Jest coverage report
               uses: ArtiomTr/jest-coverage-report-action@v2.1.2
               id: coverage
               with:
                   skip-step: install
                   annotations: all
-                  test-script: yarn test:ci
+                  test-script: npm run test:ci
                   output: report-markdown
             - name: Comment on pull request
               uses: marocchino/sticky-pull-request-comment@v2
