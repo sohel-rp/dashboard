@@ -17,7 +17,7 @@ import ChartHeaderFilters from './ChartHeaderFilters'
 import { QueryParams } from './charts.util'
 import ChartEmptyState from '../common/emptyState/ChartEmptyState'
 import PageHeader from '../common/header/PageHeader'
-import {DetectBottom} from "../app/details/cIDetails/CIDetails";
+import DetectBottom from '../common/DetectBottom'
 
 export default function ChartGroupUpdate({}) {
     const history = useHistory()
@@ -54,7 +54,7 @@ export default function ChartGroupUpdate({}) {
     const { url } = match
     const [chartListLoading, setChartListLoading] = useState(true)
     const chartList: Chart[] = Array.from(state.availableCharts.values())
-    const [isGrid, setIsGrid] = useState<boolean>(false)
+    const [isGrid, setIsGrid] = useState<boolean>(true)
 
     const { breadcrumbs } = useBreadcrumb(
         {
@@ -174,7 +174,7 @@ export default function ChartGroupUpdate({}) {
     }
 
 
-    async function reloadNextAfterBottom(e) {
+    async function reloadNextAfterBottom() {
         await applyFilterOnCharts(location.search, false)
     }
 

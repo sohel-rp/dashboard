@@ -45,7 +45,7 @@ import NoGitOpsConfiguredWarning from '../../workflowEditor/NoGitOpsConfiguredWa
 import { ReactComponent as Help } from '../../../assets/icons/ic-help.svg'
 import { ReactComponent as BackIcon } from '../../../assets/icons/ic-back.svg'
 import InfoColourBar from '../../common/infocolourBar/InfoColourbar'
-import {DetectBottom} from "../../app/details/cIDetails/CIDetails";
+import DetectBottom from '../../common/DetectBottom'
 
 //TODO: move to service
 export function getDeployableChartsFromConfiguredCharts(charts: ChartGroupEntry[]): DeployableCharts[] {
@@ -104,7 +104,7 @@ function DiscoverChartList() {
     const chartList: Chart[] = Array.from(state.availableCharts.values())
     const isLeavingPageNotAllowed = useRef(false)
     const [showChartGroupModal, toggleChartGroupModal] = useState(false)
-    const [isGrid, setIsGrid] = useState<boolean>(false)
+    const [isGrid, setIsGrid] = useState<boolean>(true)
     const [showGitOpsWarningModal, toggleGitOpsWarningModal] = useState(false)
     const [clickedOnAdvance, setClickedOnAdvance] = useState(null)
 
@@ -285,7 +285,7 @@ function DiscoverChartList() {
         )
     }
 
-    async function reloadNextAfterBottom(e) {
+    async function reloadNextAfterBottom() {
         callPaginationOnCharts()
     }
 

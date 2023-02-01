@@ -52,7 +52,7 @@
         "test": "react-app-rewired test",
         "test-coverage:watch": "npm run test -- --coverage",
         "test-coverage": "npm run test -- --coverage --watchAll=false",
-        "test:ci": "react-app-rewired test --watchAll=false --ci --coverage",
+        "test:ci": "./node_modules/.bin/react-app-rewired test --watchAll=false --ci --json --coverage --testLocationInResults --outputFile=report.json",
         "eject": "react-app-rewired eject",
         "jest": "jest"
     },
