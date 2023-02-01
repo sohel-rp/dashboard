@@ -22,6 +22,5 @@ module.exports = {
         '^.+\\.jsx?$': 'babel-jest',
         '^.+\\.(ts|tsx)?$': 'ts-jest',
     },
-    // setupFilesAfterEnv: ['./src/setupTests.js'],
-    // setupFiles: ['./src/setupTests.js', 'jsdom-worker'],
-};
+    setupFilesAfterEnv: ['jest-extended'],
+}
