@@ -10,6 +10,7 @@ jobs:
               uses: ArtiomTr/jest-coverage-report-action@v2.1.2
               id: coverage
               with:
+                  skip-step: install
                   annotations: all
                   test-script: npm run test:ci
                   output: report-markdown
