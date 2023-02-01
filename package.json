@@ -49,10 +49,10 @@
         "lint-fix": "eslint --fix src/**/*.tsx",
         "start": "react-app-rewired start",
         "build": "react-app-rewired build",
-        "test": "react-app-rewired test --env=jest-environment-jsdom-sixteen",
+        "test": "react-app-rewired test",
         "test-coverage:watch": "npm run test -- --coverage",
         "test-coverage": "npm run test -- --coverage --watchAll=false",
-        "test:ci": "./node_modules/.bin/react-app-rewired test --env=jest-environment-jsdom-sixteen --watchAll=false --ci --json --coverage --testLocationInResults --outputFile=report.json",
+        "test:ci": "./node_modules/.bin/react-app-rewired test --watchAll=false --ci --json --coverage --testLocationInResults --outputFile=report.json",
         "eject": "react-app-rewired eject",
         "jest": "jest"
     },
