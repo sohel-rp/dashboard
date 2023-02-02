@@ -10,7 +10,7 @@ jobs:
               uses: ArtiomTr/jest-coverage-report-action@v2.1.2
               id: coverage
               with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  github-token: ${{ secrets.SECRET_TOKEN }}
                   package-manager: yarn
                   annotations: all
                   test-script: yarn test:ci
@@ -18,7 +18,7 @@ jobs:
             - name: Comment on pull request
               uses: marocchino/sticky-pull-request-comment@v2
               with:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GITHUB_TOKEN: ${{ secrets.SECRET_TOKEN }}
                   hide_and_recreate: true
                   hide_classify: "OUTDATED"
                   message: ${{ steps.coverage.outputs.report }}
