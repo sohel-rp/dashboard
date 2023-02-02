@@ -10,6 +10,7 @@ jobs:
               uses: ArtiomTr/jest-coverage-report-action@v2.1.2
               id: coverage
               with:
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
                   package-manager: yarn
                   annotations: all
                   test-script: yarn test:ci
