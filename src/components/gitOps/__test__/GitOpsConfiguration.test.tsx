@@ -1,8 +1,8 @@
 import React from 'react'
 import GitOpsConfiguration from '../GitOpsConfiguration'
-import { render, fireEvent, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import { BrowserRouter, MemoryRouter, Route, Router, Switch } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 
 describe('Gitopsconfiguration', () => {
     let div
@@ -12,6 +12,6 @@ describe('Gitopsconfiguration', () => {
     })
 
     it('GitOpsConfiguration renders without crashing', () => {
-        render(<GitOpsConfiguration handleChecklistUpdate={jest.fn()} />)
+        render(<GitOpsConfiguration handleChecklistUpdate={jest.fn()} />, { wrapper: BrowserRouter })
     })
 })

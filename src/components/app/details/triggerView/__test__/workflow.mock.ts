@@ -10,7 +10,7 @@ export const ciConfigResp = {
         appId: 80,
         dockerRegistry: 'Devtron Playstation',
         dockerRepository: 'test',
-        dockerBuildConfig: {
+        ciBuildConfig: {
             buildPackConfig: null,
             ciBuildType: CIBuildType.SELF_DOCKERFILE_BUILD_TYPE,
             dockerBuildConfig: {
@@ -64,7 +64,7 @@ export const ciConfigResp = {
             },
         ],
         appName: 'amit-16-jan-replica',
-        version: 'abc',
+        version: 'test-version',
         materials: [{ gitMaterialId: 80, materialName: 'getting-started-nodejs' }],
         scanEnabled: true,
         appWorkflowId: 77,

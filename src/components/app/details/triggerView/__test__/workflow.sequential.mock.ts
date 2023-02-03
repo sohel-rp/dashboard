@@ -1,4 +1,4 @@
-import { DEFAULT_STATUS } from '../../../../config'
+import { DEFAULT_STATUS } from '../../../../../config'
 
 export const workflowWithSequential = {
     code: 200,

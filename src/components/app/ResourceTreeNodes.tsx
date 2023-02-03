@@ -619,7 +619,7 @@ export const Name: React.FC<{ nodeDetails: any, describeNode: (nodeName: string,
                     </span>
                 )}
                 {nodeDetails.kind.toLowerCase() === 'pod' ?
-                    <span data-testid={`${nodeDetails.name}-logs`}
+                    <span data-testid={`${nodeDetails.name}-terminal`}
                         className="hover-only fw-6 anchor pointer ml-6"
                         onClick={(e) => showManifest(NodeDetailTabs.TERMINAL)}>
                         TERMINAL

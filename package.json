@@ -106,7 +106,10 @@
         ],
         "setupFilesAfterEnv": [
             "jest-extended"
-        ]
+        ],
+        "moduleNameMapper": {
+            "monaco-editor": "<rootDir>/node_modules/react-monaco-editor"
+        }
     },
     "husky": {
         "hooks": {
