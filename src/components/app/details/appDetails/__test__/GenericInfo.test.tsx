@@ -89,6 +89,9 @@ describe('generic info testsuite', () => {
 
     it('clicking on manifest opens manifest tab', async () => {
         let selectedNode = ''
+        const table = document.createElement('table')
+        const tBody = table.appendChild(document.createElement('tbody'))
+        const tRow = tBody.appendChild(document.createElement('tr'))
         const { getByTestId, getAllByTestId } = render(
             <BrowserRouter>
                 <Name
@@ -98,6 +101,9 @@ describe('generic info testsuite', () => {
                     }}
                 />
             </BrowserRouter>,
+            {
+                container: document.body.appendChild(tRow),
+            },
         )
         fireEvent.mouseEnter(getByTestId('colorful-pod-logs-amit-dev-698bcdb789-hover-trigger'))
         fireEvent.click(getAllByTestId('colorful-pod-logs-amit-dev-698bcdb789-manifest')[0])
@@ -145,6 +151,9 @@ describe('genericrow test', () => {
 
     it('Clicking on Events, Manifest and Logs causes correct URL change and correct callback to parent for set state', async () => {
         let nodeName, containerName
+        const table = document.createElement('table')
+        const tBody = table.appendChild(document.createElement('tbody'))
+
         const { getByTestId } = render(
             <BrowserRouter>
                 <GenericRow
@@ -162,6 +171,9 @@ describe('genericrow test', () => {
                     containerLevelExternalLinks={[]}
                 />
             </BrowserRouter>,
+            {
+                container: document.body.appendChild(tBody),
+            },
         )
 
         fireEvent.mouseEnter(getByTestId('colorful-pod-logs-amit-dev-698bcdb789-86ssw-hover-trigger'))
