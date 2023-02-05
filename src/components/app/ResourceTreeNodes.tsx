@@ -702,7 +702,7 @@ export const GenericRow: React.FC<{ appName: string; environmentName: string; no
                         return <Name key={column} nodeDetails={nodeDetails} describeNode={describeNode} addExtraSpace={nodeDetails.kind === Nodes.Containers && containerLevelExternalLinks.length > 0} />;
                     } else if (column === 'external-links') {
                         return (
-                            <td>
+                            <td key={column}>
                                 {nodeDetails.kind === Nodes.Pod && podLevelExternalLinks.length > 0 && (
                                     <NodeLevelExternalLinks
                                         appDetails={appDetails}

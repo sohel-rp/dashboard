@@ -7,9 +7,7 @@ import { aggregateNodes } from '../details/appDetails/utils'
 import { nodes, podMetadata } from '../details/appDetails/__test__/appDetails.mock'
 import { Nodes, NodeDetailTabs, AppDetails } from '../types'
 import { NodeManifestView, EventsView, parsePipes, getGrepTokens } from '../EventsLogs'
-import { render } from '@testing-library/react'
-import { waitForElement } from '@testing-library/dom'
-jest.mock('monaco-editor/esm/vs/editor/editor.api.js')
+import { render, waitFor } from '@testing-library/react'
 
 function renderWithRouter(ui, { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {}) {
     return {
@@ -20,11 +18,13 @@ function renderWithRouter(ui, { route = '/', history = createMemoryHistory({ ini
 
 describe('manifest, logs and events render without breaking', () => {
     let div, aggregatedNodes
+    const requestPayload = { body: undefined, credentials: 'include', method: 'GET', signal: null }
 
     beforeAll(() => {
         div = document.createElement('div')
         aggregatedNodes = aggregateNodes(nodes, podMetadata)
         global.fetch = jest.fn()
+        requestPayload.signal = new AbortController().signal
     })
 
     beforeEach(() => {
@@ -41,7 +41,7 @@ describe('manifest, logs and events render without breaking', () => {
     })
 
     it('manifest renders without breaking', async () => {
-        const { history, getByText, getByTestId } = renderWithRouter(
+        const { getByTestId } = renderWithRouter(
             <Route path="app/:appId/details/:envId/:kind/:tab">
                 <NodeManifestView
                     nodeName={'colorful-pod-logs-amit-dev-ingress'}
@@ -52,16 +52,17 @@ describe('manifest, logs and events render without breaking', () => {
             </Route>,
             { route: `app/3/details/4/${Nodes.Pod}/${NodeDetailTabs.MANIFEST}?kind=${Nodes.Ingress}` },
         )
-        await waitForElement(() => getByTestId('manifest-container'))
+
+        await getByTestId('manifest-container')
         expect(global.fetch).toHaveBeenCalledTimes(1)
         expect(global.fetch).toHaveBeenCalledWith(
             'undefined/api/v1/applications/test-app-test-env/resource?version=v1beta1&namespace=amit-dev&group=extensions&kind=Ingress&resourceName=colorful-pod-logs-amit-dev-ingress',
-            expect.toBeObject(),
+            requestPayload,
         )
     })
 
     it('events renders without breaking', async () => {
-        const { history, getByText, getByTestId } = renderWithRouter(
+        const { getByTestId } = renderWithRouter(
             <Route path="app/:appId/details/:envId/:kind/:tab">
                 <EventsView
                     nodeName={'colorful-pod-logs-amit-dev-ingress'}
@@ -77,11 +78,11 @@ describe('manifest, logs and events render without breaking', () => {
             </Route>,
             { route: `app/3/details/4/${Nodes.Pod}/${NodeDetailTabs.EVENTS}?kind=${Nodes.Ingress}` },
         )
-        await waitForElement(() => getByTestId('events-container'))
+        await getByTestId('events-container')
         expect(global.fetch).toHaveBeenCalledTimes(1)
         expect(global.fetch).toHaveBeenCalledWith(
             'undefined/api/v1/applications/blobs-dev/events?resourceNamespace=dev&resourceUID=87bcb4e8-a188-11ea-9e9f-02d9ecfd9bc6&resourceName=colorful-pod-logs-amit-dev-ingress',
-            expect.toBeObject(),
+            requestPayload,
         )
     })
 
